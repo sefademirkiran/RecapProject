@@ -14,18 +14,33 @@ namespace DataAccess.Concrete.EntityFramework.Repository
 {
     public class EfCarDal : EfEntityRepositoryBase <Car, RentACarContext>, ICarDal
     {
-        public List<CarDetailDto> GetCarDetailDto()
+        public List<CarDetailDto> GetCarDetailDto(Expression<Func<Car, bool>>filter = null)
         {
             using (RentACarContext context = new RentACarContext())
             {
-                var result = from c in context.Cars
-                             join b in context.Brands
-                             on c.BrandId equals b.BrandId
+                var result = from car in filter is null ? context.Cars : context.Cars.Where(filter)
+                             join brand in context.Brands
+                             on car.BrandId equals brand.BrandId
+                             join color in context.Colors
+                             on car.ColorId equals color.ColorId
                              select new CarDetailDto
-                             { CarId= c.Id, BrandName = b.BrandName, CarName = b.BrandName, };
+                             {
+                                 Id = car.Id,
+                                 BrandId = brand.BrandId,
+                                 ColorId = color.ColorId,
+                                 BrandName = brand.BrandName,
+                                 ColorName = color.ColorName,
+                                 DailyPrice = car.DailyPrice,
+                                 Description = car.Description                                 
+                             };
                 return result.ToList();
 
             }
+        }
+
+        public List<CarDetailDto> GetCarDetailDto()
+        {
+            throw new NotImplementedException();
         }
     }
 }

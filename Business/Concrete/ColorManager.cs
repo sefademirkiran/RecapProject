@@ -31,7 +31,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ColorDeleted);
         }
 
-        public IDataResult<List<Color>> GetAll()
+        public IDataResult<List<Color>> GetColors()
         {
             return new SuccessDataResult<List<Color>>( _colorDal.GetAll());
 

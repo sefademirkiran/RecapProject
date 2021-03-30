@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Core.Utilities.Results
 {
-    public interface IDataResult<T>:IResult
+    public interface IDataResult<TEntity>:IResult
     {
-        T Data { get; }
-
+        TEntity Data { get; }
     }
 }

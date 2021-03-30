@@ -44,6 +44,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
         }
 
+        public IDataResult<List<Rental>> GetRentals()
+        {
+            throw new NotImplementedException();
+        }
+
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);

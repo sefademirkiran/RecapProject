@@ -39,6 +39,11 @@ namespace Business.Concrete
             return new SuccessDataResult<Customer>(_customerDal.Get(u =>u.UserId == userId));
         }
 
+        public IDataResult<List<Customer>> GetCustomers()
+        {
+            throw new NotImplementedException();
+        }
+
         public IResult Update(Customer customer)
         {
             _customerDal.Update(customer);

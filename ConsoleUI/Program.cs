@@ -14,10 +14,7 @@ namespace ConsoleUI
             ColorManager colorManager = new ColorManager(new EfColorDal());
 
             Console.WriteLine("Brad Id'si 1 olan araçlar : \n Id \t Color Name \t Brand Name \t Model Year \t Daily Price \t Descriptions");
-            foreach (var car  in carManager.GetAllByBrandId(1))
-            {
-                Console.WriteLine($"{car.ColorId} \t {colorManager.GetById(car.ColorId).ColorName} ");
-            }
+            
             
         }
     }
